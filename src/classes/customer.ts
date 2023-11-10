@@ -5,17 +5,16 @@ import {
 } from './interfaces/customer-protocol';
 
 export class IndividualCustomer
-  implements IndividualCustomerProtocol, CustomerOrder {
+  implements IndividualCustomerProtocol, CustomerOrder
+{
   firstName: string;
   lastName: string;
   cpf: string;
-  cnpj: string;
 
   constructor(firstName: string, lastName: string, cpf: string) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.cpf = cpf;
-    this.cnpj = '';
   }
 
   getName(): string {
@@ -28,7 +27,8 @@ export class IndividualCustomer
 }
 
 export class EnterpriseCustomer
-  implements EnterpriseCustomerProtocol, CustomerOrder {
+  implements EnterpriseCustomerProtocol, CustomerOrder
+{
   name: string;
   cnpj: string;
 
