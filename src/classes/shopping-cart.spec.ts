@@ -67,4 +67,21 @@ describe('ShoppingCart', () => {
     sut.removeItem(0);
     expect(sut.isEmpty()).toBe(true);
   });
+
+  it('should call discount.calculate once when totalWithDiscount is called', () => {
+    // test integration between ShoppingCart and Discount
+    // we need to know if the method calculate() from Discount (external class delivered by constructor as param) was called because it is a dependency of ShoppingCart
+    // all tests above are from methods that use only ShoppingCart's properties
+    const { sut, discountMock } = createSutWithProducts();
+    const discountMockSpy = jest.spyOn(discountMock, 'calculate');
+    sut.totalWithDicount();
+    expect(discountMockSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call discount.calculate with total price when totalWithDiscount is called', () => {
+    const { sut, discountMock } = createSutWithProducts();
+    const discountMockSpy = jest.spyOn(discountMock, 'calculate');
+    sut.totalWithDicount();
+    expect(discountMockSpy).toHaveBeenCalledWith(sut.total());
+  });
 });
