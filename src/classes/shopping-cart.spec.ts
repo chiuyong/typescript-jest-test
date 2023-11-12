@@ -32,7 +32,7 @@ const createSutWithProducts = () => {
 afterEach(() => jest.clearAllMocks());
 
 describe('ShoppingCart', () => {
-  it('should have be an empty cart when no product is added', () => {
+  it('should be an empty cart when no product is added', () => {
     // System under test
     const { sut } = createSut();
     expect(sut.isEmpty()).toBe(true);
